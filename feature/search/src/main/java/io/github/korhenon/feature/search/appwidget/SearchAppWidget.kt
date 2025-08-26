@@ -40,7 +40,7 @@ internal class SearchAppWidget : GlanceAppWidget() {
                 .fillMaxWidth()
                 .background(containerColor)
                 .cornerRadius(height / 2)
-                .padding(height / 10)
+                .padding(height / 5)
         ) {
             Image(
                 provider = ImageProvider(R.drawable.ic_search),

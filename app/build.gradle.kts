@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "io.github.korhenon.widgetlauncher"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "io.github.korhenon.widgetlauncher"
@@ -55,4 +55,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(project(":feature:search"))
 }
