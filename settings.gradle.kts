@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "WidgetLauncher"
 include(":app")
- 
+include(":feature:search")
