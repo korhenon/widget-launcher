@@ -54,4 +54,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.bundles.glance)
+    implementation(libs.koin.android.compose)
 }

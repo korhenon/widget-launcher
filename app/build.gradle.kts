@@ -57,4 +57,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(project(":feature:search"))
+    implementation(libs.koin.android.compose)
 }
