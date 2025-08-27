@@ -1,11 +1,15 @@
 package io.github.korhenon.feature.search.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
@@ -53,5 +57,10 @@ internal fun SearchScreen(
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
         )
+        LazyColumn {
+            items(state.searchResult) {
+                Text(text = it.label, color = Color.White)
+            }
+        }
     }
 }

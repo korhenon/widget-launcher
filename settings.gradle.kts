@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "WidgetLauncher"
 include(":app")
 include(":feature:search")
+include(":data:packages")
+include(":data:impl:room")
+include(":data:impl:android")
