@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -84,11 +85,15 @@ internal fun SearchScreen(
                         .padding(5.dp)
                         .clickable { onAction(SearchAction.OnAppSelect(it)) }
                 ) {
-                    Image(
-                        bitmap = it.icon.asImageBitmap(),
-                        contentDescription = "${it.label} icon",
-                        modifier = Modifier.size(55.dp)
-                    )
+                    if (it.icon != null) {
+                        Image(
+                            bitmap = it.icon!!.asImageBitmap(),
+                            contentDescription = "${it.label} icon",
+                            modifier = Modifier.size(55.dp)
+                        )
+                    } else {
+                        Box(modifier = Modifier.size(55.dp))
+                    }
                     Spacer(Modifier.width(20.dp))
                     Text(text = it.label, color = Color.White, fontSize = 20.sp)
                 }

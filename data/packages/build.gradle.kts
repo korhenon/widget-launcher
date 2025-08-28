@@ -43,4 +43,5 @@ dependencies {
 
     implementation(libs.koin.android)
     implementation(project(":data:impl:android"))
+    implementation(project(":data:impl:room"))
 }

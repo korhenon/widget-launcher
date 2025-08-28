@@ -43,4 +43,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.bundles.room)
     ksp(libs.room.compiler)
+    implementation(libs.koin.android)
 }
