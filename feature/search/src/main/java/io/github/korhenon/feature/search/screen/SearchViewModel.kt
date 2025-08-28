@@ -2,8 +2,10 @@ package io.github.korhenon.feature.search.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.korhenon.data.packages.AppInfo
 import io.github.korhenon.data.packages.PackagesRepository
 import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,7 +30,12 @@ internal class SearchViewModel(
     fun onAction(action: SearchAction) {
         when (action) {
             is SearchAction.OnQueryChange -> onQueryChange(action.value)
+            is SearchAction.OnAppSelect -> onAppSelect(action.app)
         }
+    }
+
+    private fun onAppSelect(app: AppInfo) {
+        repository.launchApp(app)
     }
 
     private fun onQueryChange(value: String) {
@@ -44,6 +51,10 @@ internal class SearchViewModel(
                     }
                 )
             )
+            if (_state.value.searchResult.size == 1) {
+                delay(1000)
+                onAppSelect(_state.value.searchResult[0])
+            }
         }
     }
 }
