@@ -6,6 +6,7 @@ import io.github.korhenon.data.packages.AppInfo
 import io.github.korhenon.data.packages.InstalledApps
 import io.github.korhenon.data.packages.PackagesRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +25,8 @@ internal class SearchViewModel(
     private val _state = MutableStateFlow(SearchState())
     val state = _state.onStart {}
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), SearchState())
+
+    private var autoLaunchJob: Job? = null
 
     init {
         viewModelScope.launch {
@@ -70,9 +73,14 @@ internal class SearchViewModel(
                     }
                 )
             )
+            if (autoLaunchJob?.isActive == true) {
+                autoLaunchJob!!.cancel()
+            }
             if (_state.value.searchResult.size == 1) {
-                delay(1000)
-                onAppSelect(_state.value.searchResult[0])
+                autoLaunchJob = viewModelScope.launch {
+                    delay(1000)
+                    onAppSelect(_state.value.searchResult[0])
+                }
             }
         }
     }
