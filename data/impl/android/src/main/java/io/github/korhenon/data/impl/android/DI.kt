@@ -8,4 +8,8 @@ val dataImplAndroidModule = module {
     factory {
         PackagesDataSourceImpl(androidContext())
     } bind PackagesDataSource::class
+
+    factory {
+        ImagesDataSourceImpl(androidContext())
+    } bind ImagesDataSource::class
 }
